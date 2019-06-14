@@ -1,8 +1,8 @@
 #!/bin/bash
 
-#$ -N merge2
-#$ -o /proj/omics4tb2/alomana/scratch/messages.cr.merge.o.txt
-#$ -e /proj/omics4tb2/alomana/scratch/messages.cr.merge.e.txt
+#$ -N merge
+#$ -o /proj/omics4tb2/alomana/scratch/messages.deconvolution.both.merge.o.txt
+#$ -e /proj/omics4tb2/alomana/scratch/messages.deconvolution.both.merge.e.txt
 #$ -pe smp 40
 #$ -l hostname=baliga2
 #$ -S /bin/bash
@@ -29,6 +29,6 @@ uname -a
 echo ""
 
 echo "Running count..." 
-cd /proj/omics4tb2/alomana/projects/i18/results/
-time cellranger aggr --id=both_aggregated2 --csv=/proj/omics4tb2/alomana/projects/i18/data/sc/aggregation.csv --normalize=mapped --localcores=40 --localmem=90
+cd /proj/omics4tb2/alomana/projects/i18/results/deconvolution
+time cellranger aggr --id=aggregated --csv=/proj/omics4tb2/alomana/projects/i18/data/deconvolution/aggregation.csv --normalize=mapped --localcores=40 --localmem=90
 echo "... run completed."

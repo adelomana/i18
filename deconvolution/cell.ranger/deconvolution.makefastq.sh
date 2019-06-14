@@ -1,8 +1,8 @@
 #!/bin/bash
 
-#$ -N cr.makefastq
-#$ -o /proj/omics4tb2/alomana/scratch/messages.cr.makefastq.o.txt
-#$ -e /proj/omics4tb2/alomana/scratch/messages.cr.makefastq.e.txt
+#$ -N makefastq
+#$ -o /proj/omics4tb2/alomana/scratch/messages.deconvolution.makefastq.o.txt
+#$ -e /proj/omics4tb2/alomana/scratch/messages.deconvolution.makefastq.e.txt
 #$ -pe smp 40
 #$ -l hostname=baliga1
 #$ -S /bin/bash
@@ -29,5 +29,5 @@ uname -a
 echo ""
 
 echo "Running makefastq..." 
-cd /proj/omics4tb2/alomana/projects/i18/results/
-time cellranger mkfastq --run=/proj/omics4tb2/alomana/projects/i18/data/sc/original/190219_NS500720_0402_AHTTLKBGX9 --samplesheet=/proj/omics4tb2/alomana/projects/i18/data/sc/cellranger-bcl-samplesheet-190219.csv --localcores=40 --localmem=90
+cd /proj/omics4tb2/alomana/projects/i18/results/deconvolution
+time cellranger mkfastq --run=/proj/omics4tb2/alomana/projects/i18/data/deconvolution/original/190510_NS500720_0419_AHFGF7BGXB --samplesheet=/proj/omics4tb2/alomana/projects/i18/data/deconvolution/cellranger-bcl-samplesheet.csv --localcores=40 --localmem=90
