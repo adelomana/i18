@@ -29,6 +29,6 @@ uname -a
 echo ""
 
 echo "Running count..." 
-cd /proj/omics4tb2/alomana/projects/i18/results/deconvolution
-time cellranger aggr --id=aggregated --csv=/proj/omics4tb2/alomana/projects/i18/data/deconvolution/aggregation.csv --normalize=mapped --localcores=40 --localmem=90
+cd /proj/omics4tb2/alomana/projects/i18/results/deconvolution/cell_ranger/both
+time cellranger aggr --id=aggregated_both --csv=/proj/omics4tb2/alomana/projects/i18/data/deconvolution/aggregation.csv --normalize=mapped --localcores=40 --localmem=90
 echo "... run completed."

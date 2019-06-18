@@ -29,10 +29,10 @@ uname -a
 echo ""
 
 echo "Running count..." 
-cd /proj/omics4tb2/alomana/projects/i18/results/deconvolution
-time cellranger count --id=d2_dmso --transcriptome=/proj/omics4tb2/alomana/software/cellRanger/data/refdata-cellranger-hg19-and-mm10-3.0.0 --fastqs=/proj/omics4tb2/alomana/projects/i18/results/deconvolution/HFGF7BGXB/outs/fastq_path --sample=d2_dmso --expect-cells=1000 --localcores=40 --localmem=90
-time cellranger count --id=d4_dmso --transcriptome=/proj/omics4tb2/alomana/software/cellRanger/data/refdata-cellranger-hg19-and-mm10-3.0.0 --fastqs=/proj/omics4tb2/alomana/projects/i18/results/deconvolution/HFGF7BGXB/outs/fastq_path --sample=d4_dmso --expect-cells=1000 --localcores=40 --localmem=90
-time cellranger count --id=d4_pstat_r2 --transcriptome=/proj/omics4tb2/alomana/software/cellRanger/data/refdata-cellranger-hg19-and-mm10-3.0.0 --fastqs=/proj/omics4tb2/alomana/projects/i18/results/deconvolution/HFGF7BGXB/outs/fastq_path --sample=d4_pstat_r2 --expect-cells=1000 --localcores=40 --localmem=90
+cd /proj/omics4tb2/alomana/projects/i18/results/deconvolution/cell_ranger/both/
+time cellranger count --id=d2_dmso_both --transcriptome=/proj/omics4tb2/alomana/software/cellRanger/data/refdata-cellranger-hg19-and-mm10-3.0.0 --fastqs=/proj/omics4tb2/alomana/projects/i18/results/deconvolution/cell_ranger/HFGF7BGXB/outs/fastq_path --sample=d2_dmso --expect-cells=1000 --localcores=40 --localmem=90
+time cellranger count --id=d4_dmso_both --transcriptome=/proj/omics4tb2/alomana/software/cellRanger/data/refdata-cellranger-hg19-and-mm10-3.0.0 --fastqs=/proj/omics4tb2/alomana/projects/i18/results/deconvolution/cell_ranger/HFGF7BGXB/outs/fastq_path --sample=d4_dmso --expect-cells=1000 --localcores=40 --localmem=90
+time cellranger count --id=d4_pstat_r2_both --transcriptome=/proj/omics4tb2/alomana/software/cellRanger/data/refdata-cellranger-hg19-and-mm10-3.0.0 --fastqs=/proj/omics4tb2/alomana/projects/i18/results/deconvolution/cell_ranger/HFGF7BGXB/outs/fastq_path --sample=d4_pstat_r2 --expect-cells=1000 --localcores=40 --localmem=90
 echo "... run completed."
 
 # 1,control,untreated samples,NA
