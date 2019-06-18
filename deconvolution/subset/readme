@@ -1,0 +1,4 @@
+use the combined genome annotation species
+get the barcodes that have higher proportion of mouse
+call variants, with lower quality on an aggregated of all mouse cells
+call variants on only htose cells, at even lower quality. 3 reads.

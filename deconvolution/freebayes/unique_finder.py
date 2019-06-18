@@ -58,6 +58,7 @@ printt('working with {} total snps'.format(len(all_snps)))
 sorted_snps={}
 for genotype in genotypes:
     sorted_snps[genotype]=[]
+sorted_snps['reference']=[]
 number_reference_snps=0
     
 for snp in all_snps:
@@ -69,6 +70,7 @@ for snp in all_snps:
         sorted_snps[genotypes[found[0]]].append(snp)
     if len(found) == 3:
         number_reference_snps=number_reference_snps+1
+        sorted_snps['reference'].append(snp)
 
 for genotype in genotypes:
     printt('found {} especific snps for {}'.format(len(sorted_snps[genotype]),genotype))
