@@ -4,7 +4,7 @@
 ###
 
 import sys,datetime,os,numpy
-import multiprocessing,multiprocessing.pool
+import matplotlib,matplotlib.pyplot
 
 def cell_variants_evaluator(cell_variants,real):
 
@@ -43,11 +43,13 @@ def cell_variants_evaluator(cell_variants,real):
         if found_in_bulk == 0:
             printt('WARNING: variant {} in cell {} {} not found in population variants'.format(cell_variant,cell,genotype))
                 
-    best_index_read=numpy.argmax(supporting_read_ratios)
-    best_index_quality=numpy.argmax(supporting_quality_ratios)
+    read_order=numpy.flip(numpy.argsort(supporting_read_ratios))
+    quality_order=numpy.flip(numpy.argsort(supporting_quality_ratios))
 
-    prediction_read=genotypes[best_index_read]
-    prediction_quality=genotypes[best_index_quality]
+    prediction_read=genotypes[read_order[0]]
+    prediction_quality=genotypes[quality_order[0]]
+
+    read_support=supporting_read_ratios[read_order[0]]/supporting_read_ratios[read_order[1]]
 
     if real == prediction_read:
         assessment='SUCCESS'
@@ -57,7 +59,7 @@ def cell_variants_evaluator(cell_variants,real):
     printt('label: {}; predictions: {} {}; assessment: {}'.format(real,prediction_read,prediction_quality,assessment))
     print('')
 
-    return None
+    return read_support
 
 def printt(message):
     
@@ -87,7 +89,6 @@ def variant_reader(input_file):
 ###
 
 # 0. user defined variables
-threads=8
 population_variants_files={}
 population_variants_files['wt']='/Volumes/omics4tb2/alomana/projects/i18/results/deconvolution/subset02/wt/merged.046.cells/aggregated_variants.vcf'
 population_variants_files['mavs']='/Volumes/omics4tb2/alomana/projects/i18/results/deconvolution/subset02/mavs/merged.043.cells/aggregated_variants.vcf'
@@ -108,6 +109,8 @@ for genotype in genotypes:
     
 # 2. sort cells
 printt('sort cells')
+x=[]; y=[]; z=[]; t=[]
+
 for genotype in genotypes:
     printt('working with genotype {}'.format(genotype))
     detected_folders=os.listdir(single_cell_dir+genotype)
@@ -126,4 +129,12 @@ for genotype in genotypes:
         printt('detected {} variants'.format(len(cell_variants)))
 
         real=genotype
-        cell_variants_evaluator(cell_variants,real)
+        read_support=cell_variants_evaluator(cell_variants,real)
+
+        # make figure
+        x.append(mapped_reads); y.append(read_support); z.append(len(cell_variants)); t.append(genotype)
+
+print(x)
+print(y)
+print(z)
+print(t)
