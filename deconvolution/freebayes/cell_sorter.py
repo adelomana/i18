@@ -6,6 +6,9 @@
 import sys,datetime,os,numpy
 import matplotlib,matplotlib.pyplot
 
+matplotlib.rcParams.update({'font.size':18,'font.family':'Arial','xtick.labelsize':14,'ytick.labelsize':14})
+matplotlib.rcParams['pdf.fonttype']=42
+
 def cell_variants_evaluator(cell_variants,real):
 
     supporting_read_ratios=numpy.array([0 for genotype in genotypes])
@@ -90,10 +93,10 @@ def variant_reader(input_file):
 
 # 0. user defined variables
 population_variants_files={}
-population_variants_files['wt']='/Volumes/omics4tb2/alomana/projects/i18/results/deconvolution/subset02/wt/merged.046.cells/aggregated_variants.vcf'
-population_variants_files['mavs']='/Volumes/omics4tb2/alomana/projects/i18/results/deconvolution/subset02/mavs/merged.043.cells/aggregated_variants.vcf'
-population_variants_files['nlrp3']='/Volumes/omics4tb2/alomana/projects/i18/results/deconvolution/subset02/nlrp3/merged.008.cells/aggregated_variants.vcf'
-single_cell_dir='/Volumes/omics4tb2/alomana/projects/i18/results/deconvolution/subset02/'
+population_variants_files['wt']='/Volumes/omics4tb2/alomana/projects/i18/results/deconvolution/freebayes/wt/subset.046.cells/aggregated_variants.vcf'
+population_variants_files['mavs']='/Volumes/omics4tb2/alomana/projects/i18/results/deconvolution/freebayes/mavs/subset.043.cells/aggregated_variants.vcf'
+population_variants_files['nlrp3']='/Volumes/omics4tb2/alomana/projects/i18/results/deconvolution/freebayes/nlrp3/subset.008.cells/aggregated_variants.vcf'
+single_cell_dir='/Volumes/omics4tb2/alomana/projects/i18/results/deconvolution/freebayes/'
 genotypes=sorted(list(population_variants_files.keys()))
 
 # 1. read population variants
@@ -131,10 +134,49 @@ for genotype in genotypes:
         real=genotype
         read_support=cell_variants_evaluator(cell_variants,real)
 
-        # make figure
+        # adding data to build figure
         x.append(mapped_reads); y.append(read_support); z.append(len(cell_variants)); t.append(genotype)
 
-print(x)
-print(y)
-print(z)
-print(t)
+# 3. make figure
+unique_genotypes=set(t)
+
+for genotype in unique_genotypes:
+    a=[]; b=[]; c=[]
+
+    if genotype == 'mavs':
+        marker = 'D'
+    if genotype == 'nlrp3':
+        marker = 's'
+    if genotype == 'wt':
+        marker = 'o'
+
+    for i in range(len(x)):
+        if t[i] == genotype:
+            a.append(x[i])
+            b.append(y[i])
+            c.append(z[i])
+
+    matplotlib.pyplot.scatter(numpy.log10(a),b,c=numpy.log2(c),marker=marker,cmap='viridis',vmin=min(numpy.log2(z)),vmax=max(numpy.log2(z)),label=genotype)
+
+matplotlib.pyplot.axhline(y=1,ls=':',color='black')
+
+cbar=matplotlib.pyplot.colorbar()
+cbar.set_ticks([2,3,4,5,6,7,8])
+cbar.set_ticklabels(2**(numpy.array([2,3,4,5,6,7,8])))
+cbar.ax.set_title('Detected variants',fontsize=14)
+
+matplotlib.pyplot.xlim([3-0.1,numpy.max(numpy.log10(x))+0.1])
+
+matplotlib.pyplot.yticks([1,2,4,6,8,10],['bkg',2,4,6,8,10])
+
+matplotlib.pyplot.xlabel('log$_{10}$ Mapped reads')
+matplotlib.pyplot.ylabel('Support ratio')
+
+leg=matplotlib.pyplot.legend(fontsize=14)
+for marker in leg.legendHandles:
+    marker.set_color('black')
+
+matplotlib.pyplot.tight_layout()
+matplotlib.pyplot.savefig('/Volumes/omics4tb2/alomana/projects/i18/results/deconvolution/freebayes/figure.variant_support.pdf')
+matplotlib.pyplot.clf()
+
