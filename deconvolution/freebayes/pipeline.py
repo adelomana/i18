@@ -88,7 +88,7 @@ def printt(message):
     return None
 
 # 0. user defined variables
-selected_cellIDs_file='/Users/alomana/github/i18/deconvolution/scanpy/species.cellIDs.run2.001.pickle'
+selected_cellIDs_file='/Volumes/omics4tb2/alomana/projects/i18/results/deconvolution/scanpy/species.cellIDs.run2.001.pickle'
 fasta_reference_file='/Volumes/omics4tb2/alomana/software/cellRanger/data/refdata-cellranger-mm10-3.0.0/fasta/genome.fa'
 subset_dir='/Volumes/omics4tb2/alomana/projects/i18/results/deconvolution/freebayes/'
 threads=8
