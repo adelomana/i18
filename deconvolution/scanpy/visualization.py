@@ -5,11 +5,8 @@ import scanpy
 scanpy.settings.verbosity=5
 
 # 0. user defined variables
-# adata=scanpy.read_10x_mtx('/Volumes/omics4tb2/alomana/projects/i18/results/run2/aggregated/outs/filtered_feature_bc_matrix',var_names='gene_symbols',cache=True)
-adata=scanpy.read_10x_mtx('/Users/adriandelomana/scratch/filtered_feature_bc_matrix',var_names='gene_symbols',cache=True)
-
-# jarFile='/Volumes/omics4tb2/alomana/projects/i18/results/run2/scanpy/species.cellIDs.run2.001.pickle'
-jarFile='/Users/adriandelomana/scratch/species.cellIDs.run2.001.pickle'
+adata=scanpy.read_10x_mtx('/Volumes/omics4tb2/alomana/projects/i18/results/deconvolution/cell_ranger/both/aggregated_both/outs/filtered_feature_bc_matrix',var_names='gene_symbols',cache=True)
+jarFile='/Volumes/omics4tb2/alomana/projects/i18/results/deconvolution/scanpy/species.cellIDs.run2.001.pickle'
 
 # 1. read data files
 adata.var_names_make_unique() 
@@ -123,6 +120,8 @@ print(cellConditions,len(cellConditions))
 print('number of WT cells:',cellConditions.count('WT'))
 print('number of MAVS cells:',cellConditions.count('MAVS'))
 print('number of NLRP3 cells:',cellConditions.count('NLRP3'))
+
+sys.exit()
 
 # 3. visualization
 components=50

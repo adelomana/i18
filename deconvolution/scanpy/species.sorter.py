@@ -37,9 +37,9 @@ def speciesRatioComputer(cellID):
 ###
 
 # 0. user defined variables
-matrixFolder='/Volumes/omics4tb2/alomana/projects/i18/results/run2/aggregated/outs/filtered_feature_bc_matrix/'
+matrixFolder='/Volumes/omics4tb2/alomana/projects/i18/results/deconvolution/cell_ranger/both/aggregated_both/outs/filtered_feature_bc_matrix'
 
-jarFile='species.cellIDs.run2.001.pickle'
+jarFile='/Volumes/omics4tb2/alomana/projects/i18/results/deconvolution/scanpy/species.cellIDs.deconvolution.002.pickle'
 numberOfCPUs=8 
 numberOfCells=3000 # we currently have 2,340
 
