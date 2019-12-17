@@ -30,7 +30,7 @@ def trimmomatic_caller(path,label,lane):
 
 # 0. user defined variables
 fastq_dir='/Volumes/omics4tb2/alomana/projects/i18/data/bulk_rna/FASTQ_Generation_2019-06-26_12_35_52Z-188844669/'
-fastq_clean_dir='/Volumes/omics4tb2/alomana/projects/i18/results/bulk_rnaseq/'
+fastq_clean_dir='/Volumes/omics4tb2/alomana/projects/i18/results/bulk_rnaseq/clean_fastq/'
 trimmomatic_path='/Users/alomana/software/Trimmomatic-0.39/'
 adapter_file=trimmomatic_path+'adapters/TruSeq3-SE.fa'
 number_threads=8
