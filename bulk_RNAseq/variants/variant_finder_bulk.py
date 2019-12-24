@@ -6,7 +6,7 @@ def freebayes_caller(label):
     bam_file='{}{}/Aligned.sortedByCoord.out.bam'.format(bam_dir,label)
     target_vcf_file='{}.vcf'.format(label)
 
-    command='freebayes --fasta-reference {} {} --min-alternate-count 2 --min-mapping-quality 30 --min-base-quality 20 > {}'.format(fasta_reference_file,bam_file,target_vcf_file)
+    command='freebayes --fasta-reference {} {} --min-alternate-count 2 --min-mapping-quality 30 --min-base-quality 20 > {}{}'.format(fasta_reference_file,bam_file,vcf_dir,target_vcf_file)
 
     printt(command)
     os.system(command)
@@ -26,6 +26,7 @@ def printt(message):
 # 0. user defined variables
 bam_dir='/Volumes/omics4tb2/alomana/projects/i18/results/bulk_rnaseq/bam/'
 fasta_reference_file='/Volumes/omics4tb2/alomana/software/cellRanger/data/refdata-cellranger-mm10-3.0.0/fasta/genome.fa'
+vcf_dir='Volumes/omics4tb2/alomana/projects/i18/results/bulk_rnaseq/vcf/'
 threads=3
 
 # 1. define the sets of BAM files per genotype
