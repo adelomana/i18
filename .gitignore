@@ -8,3 +8,5 @@ fixation/.ipynb_checkpoints/scanpy.analysis.NOT.normalized-checkpoint.ipynb
 fixation/scanpy/.ipynb_checkpoints/scanpy.analysis.normalized-checkpoint.ipynb
 10x/.ipynb_checkpoints/10x-checkpoint.ipynb
 bulk_RNAseq/trimming/messages.cleaner.txt
+bulk_RNAseq/expression/figure.tSNE.png
+bulk_RNAseq/expression/figure.pca.png
